@@ -8,18 +8,25 @@ const Chat = ({ location }) => {
 	const [name, setName] = useState('');
 	const [room, setRoom] = useState('');
 
-	const ENPOINT = 'localhost:5000';
+	const ENDPOINT = 'localhost:5000';
 
 	useEffect(() => {
 		const { name, room } = queryString.parse(location.search);
 
-		socket = io(ENPOINT);
+		socket = io(ENDPOINT);
 
 		setName(name);
 		setRoom(room);
 
-		socket.emit('join', { name, room });
-	}, [ENPOINT, location.search]);
+		socket.emit('join', { name, room }, () => {
+			console.log('The callback is fired!');
+		});
+
+		return () => {
+			socket.emit('disconnect');
+			socket.off();
+		};
+	}, [ENDPOINT, location.search]);
 
 	return (
 		<h1>Chat</h1>

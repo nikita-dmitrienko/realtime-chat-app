@@ -22,6 +22,12 @@ app.use(cors());
 io.on('connection', (socket) => {
 	console.log('Connection is made');
 
+	socket.on('join', ({ name, room }, callback) => {
+		console.log(name, room);
+
+		callback();
+	});
+
 	socket.on('disconnect', () => {
 		console.log('User had left');
 	});
