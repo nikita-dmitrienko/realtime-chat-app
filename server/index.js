@@ -14,7 +14,7 @@ const io = socketio(server, {
 		origin: "http://localhost:3000",
 		methods: ["GET", "POST"]
 	}
-  });
+});
 
 app.use(router);
 app.use(cors());
