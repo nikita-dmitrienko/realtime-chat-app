@@ -4,12 +4,14 @@ import { io } from 'socket.io-client';
 import './Chat.css';
 
 import InfoBar from '../InfoBar/InfoBar';
+import TextContainer from '../TextContainer/TextContainer';
 
 let socket;
 
 const Chat = ({ location }) => {
 	const [name, setName] = useState('');
 	const [room, setRoom] = useState('');
+	const [users, setUsers] = useState('');
 	const [message, setMessage] = useState('');
 	const [messages, setMessages] = useState([]);
 
@@ -60,7 +62,7 @@ const Chat = ({ location }) => {
 			{/* <Messages messages={messages} name={name} /> */}
 			{/* <Input message={message} setMessage={setMessage} sendMessage={sendMessage} /> */}
 		</div>
-		{/* <TextContainer users={users}/> */}
+		<TextContainer users={users}/>
 	  </div>
 	);
 };
