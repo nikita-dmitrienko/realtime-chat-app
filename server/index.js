@@ -24,8 +24,8 @@ const io = socketio(server, {
 	}
 });
 
-app.use(router);
 app.use(cors());
+app.use(router);
 
 io.on('connection', (socket) => {
 	socket.on('join', ({ name, room }, callback) => {
@@ -74,7 +74,7 @@ io.on('connection', (socket) => {
 		const user = removeUser(id);
 	
 		if (user) {
-			io.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+			io.to(user.room).emit('message', { user: 'admin', text: `${user.name} has left.` });
 			io.to(user.room).emit('roomData', { room: user.room, users: getUsersByRoom(user.room) });
 		}
 	});
