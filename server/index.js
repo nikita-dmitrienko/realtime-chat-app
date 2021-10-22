@@ -3,6 +3,7 @@ const socketio = require('socket.io');
 const http = require('http');
 const cors = require('cors');
 
+const origin = 'https://61728f7720343df6b69af65b--websocket-realtime-chat-client.netlify.app';
 
 const {
 	addUser,
@@ -19,8 +20,8 @@ const app = express();
 const server = http.createServer(app);
 const io = socketio(server, {
 	cors: {
-		origin: "http://localhost:3000",
-		methods: ["GET", "POST"]
+		origin,
+		methods: ['GET', 'POST']
 	}
 });
 
